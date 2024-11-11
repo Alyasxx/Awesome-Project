@@ -3,7 +3,8 @@ import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Profil from './App';
-import Mahasiswa from './Mahasiswa';
+import Createdata from './Createdata';
+import DataMahasiswa from './Listdata';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
@@ -13,13 +14,13 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 function HomeScreen() {
   return (
-  <Profil/>
+  <Createdata/>
   );
 }
 
 function DataMahasiswaScreen() {
   return (
-    <Mahasiswa/>
+    <DataMahasiswa/>
   );
 }
 
