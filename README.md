@@ -1,6 +1,6 @@
 # CashLess - Aplikasi E-Wallet untuk Pendataan Keuangan
 
-<img src="data/cashless.png" alt="Logo CashLess" width="200" height="100" />
+<img src="data/cashless.png" alt="Logo CashLess" width="100" height="100" />
 ==========================
 
 ## Latar Belakang
