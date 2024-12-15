@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faWallet, faChevronRight, faEye, faEyeSlash, faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 
 const Listwallet = () => {
-  const jsonUrl = 'http://192.168.1.10:3000/wallet'; // Ganti dengan URL JSON Anda
+  const jsonUrl = 'http://172.20.10.4:3000/wallet'; // Ganti dengan URL JSON Anda
   const [isLoading, setLoading] = useState(true);
   const [dataWallet, setDataWallet] = useState([]);
   const [refresh, setRefresh] = useState(false);

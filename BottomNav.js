@@ -54,7 +54,7 @@ export default function App() {
           component={HomeScreen}
           options={{
             headerShown: false,
-            tabBarIcon: ({ color }) => <FontAwesomeIcon icon={faHomeAlt} color={color} size={20} />,
+            tabBarIcon: ({ color }) => <FontAwesomeIcon icon={faList} color={color} size={20} />,
           }}
         />
         <Tab.Screen
@@ -77,7 +77,7 @@ export default function App() {
           component={ListScreen}
           options={{
             headerShown: false,
-            tabBarIcon: ({ color }) => <FontAwesomeIcon icon={faList} color={color} size={20} />,
+            tabBarIcon: ({ color }) => <FontAwesomeIcon icon={faHomeAlt} color={color} size={20} />,
           }}
         />
         <Tab.Screen

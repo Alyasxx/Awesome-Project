@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { SafeAreaView, View, ScrollView, TextInput, Text, Button, StyleSheet } from 'react-native';
 
 const Createwallet = () => {
-  const jsonUrl = 'http://192.168.1.10:3000/wallet';
+  const jsonUrl = 'http://172.20.10.4:3000/wallet';
   const [kategori, setKategori] = useState('');
   const [nominal, setNominal] = useState('');
   const [waktu, setWaktu] = useState('');

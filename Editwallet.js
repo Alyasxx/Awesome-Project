@@ -14,7 +14,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faPenToSquare, faWallet } from '@fortawesome/free-solid-svg-icons';
 
 const Createwallet = () => {
-  const jsonUrl = 'http://192.168.1.10:3000/wallet'; // Ganti URL sesuai dengan server Anda
+  const jsonUrl = 'http://172.20.10.4:3000/wallet'; // Ganti URL sesuai dengan server Anda
   const [kategori, setKategori] = useState('');
   const [nominal, setNominal] = useState('');
   const [waktu, setWaktu] = useState('');
