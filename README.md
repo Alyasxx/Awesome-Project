@@ -1,12 +1,11 @@
 # CashLess - Aplikasi E-Wallet untuk Pendataan Keuangan
 
 <img src="data/cashless.png" alt="Logo CashLess" width="100" height="100" />
-==========================
 
 ## Latar Belakang
-Di era digital yang semakin maju, pengelolaan keuangan pribadi menjadi semakin penting. Dengan semakin banyaknya transaksi yang dilakukan secara digital, masyarakat membutuhkan alat yang dapat membantu memantau dan mengatur keuangan mereka dengan mudah dan efisien. Banyak aplikasi keuangan yang tersedia, tetapi banyak di antaranya yang memiliki antarmuka yang kompleks dan sulit digunakan oleh orang-orang yang tidak terbiasa dengan teknologi.
+Kegiatan manusia saat ini dipermudah dengan adanya teknologi smartphone yang lebih fleksibel dibawa kemana saja dan digunakan kapan saja. Teknologi SIG melakukan adaptasi melalui penyusunan Mobile GIS yang bersifat open-sorce dengan memanfaatkan berbagai framework pengembangan agar menghasilkan aplikasi mobile yang interaktif, dinamis, responsive, dan memuaskan kebutuhan penggunanya. Mobile GIS adalah integrasi software dan hardware untuk mengolah, mengakses, dan memvisualisasikan data berbasis geospasial secara real time melalui perangkat bergerak.
 
-**CashLess** hadir sebagai solusi sederhana untuk mengelola uang masuk dan keluar dengan lebih praktis dan mudah dipahami. Dengan desain antarmuka yang ramah pengguna dan fitur-fitur yang fungsional, aplikasi ini membantu pengguna untuk mencatat, menganalisis, dan merencanakan keuangan mereka dengan lebih baik, serta memberikan kontrol penuh atas pengeluaran dan pendapatan mereka.
+**CashLess** hadir sebagai solusi sederhana untuk mengelola uang masuk dan keluar dengan lebih praktis dan mudah dipahami. Dengan desain antarmuka yang ramah pengguna dan fitur-fitur yang fungsional, aplikasi ini membantu pengguna untuk mencatat, menganalisis, dan merencanakan keuangan mereka dengan lebih baik, serta memberikan kontrol penuh atas pengeluaran dan pendapatan mereka yang telah disesuaikan berdasarkan berbagai kategori.
 
 ## Tujuan Pembuatan Produk
 Aplikasi **CashLess** dibuat dengan tujuan untuk:
@@ -19,6 +18,7 @@ Aplikasi **CashLess** dibuat dengan tujuan untuk:
 ## Pembahasan Produk
 
 ### 1. **Halaman Home (Edit Wallet)**
+<img src="data/home.png" alt="Home CashLess" width="100" height="100" />
 Halaman ini berfungsi sebagai tempat bagi pengguna untuk memasukkan dan mengedit data keuangan mereka. Pengguna dapat menambahkan kategori pengeluaran atau pemasukan seperti Gaji, Bonus, Makan, Transportasi, dan lainnya. Setiap transaksi dapat dicatat dengan memasukkan nominal dan jenisnya (income atau expenses). Halaman ini memungkinkan pengguna untuk memperbarui data keuangan mereka dengan mudah dan efisien.
 
 ### 2. **Halaman Analytics (Analisis Keuangan)**
