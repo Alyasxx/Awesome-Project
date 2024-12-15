@@ -1,225 +1,157 @@
 import React, { useState, useEffect } from 'react';
-import { SafeAreaView, View, TextInput, Button, StyleSheet, Text, FlatList, TouchableOpacity } from 'react-native';
-import { ScrollView } from 'react-native-virtualized-view';
+import { View,Text, StyleSheet, TouchableOpacity, FlatList, Button, Alert } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faPenToSquare, faGraduationCap } from '@fortawesome/free-solid-svg-icons';
+import { faGraduationCap, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
-const Createdata = () => {
-    const jsonUrl = 'http://192.168.1.4:3000/mahasiswa'; 
-    const [first_name, setFirstName] = useState('');
-    const [last_name, setLastName] = useState('');
-    const [kelas, setKelas] = useState('');
-    const [gender, setGender] = useState('');
-    const [email, setEmail] = useState('');
-    const [selectedUser, setSelectedUser] = useState({});
-    const [isLoading, setLoading] = useState(true);
-    const [dataUser, setDataUser] = useState([]);
-    const [refresh, setRefresh] = useState(false);
+const Listdata = () => {
+  const jsonUrl = 'http://192.168.1.10:3000/mahasiswa';
+  const [isLoading, setLoading] = useState(true);
+  const [dataUser, setDataUser] = useState([]);
+  const [refresh, setRefresh] = useState(false);
 
-    // Fetch data from API
-    const fetchData = () => {
-        setLoading(true);
-        fetch(jsonUrl)
-            .then((response) => response.json())
-            .then((json) => {
-                console.log('Fetched data:', json);
-                setDataUser(json);
-            })
-            .catch((error) => console.error(error))
-            .finally(() => setLoading(false));
-    };
+  // Fetch data from the server
+  const fetchData = () => {
+    setLoading(true);
+    fetch(jsonUrl)
+      .then((response) => response.json())
+      .then((json) => setDataUser(json))
+      .catch((error) => console.error(error))
+      .finally(() => setLoading(false));
+  };
 
-    useEffect(() => {
-        fetchData();
-    }, []);
+  // Run fetchData on component mount
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-    const refreshPage = () => {
-        setRefresh(true);
-        fetchData();
-        setRefresh(false);
-    };
+  // Refresh the list
+  const refreshPage = () => {
+    setRefresh(true);
+    fetchData();
+    setRefresh(false);
+  };
 
-    const selectItem = (item) => {
-        setSelectedUser(item);
-        setFirstName(item.first_name);
-        setLastName(item.last_name);
-        setKelas(item.kelas);
-        setGender(item.gender);
-        setEmail(item.email);
-    };
+  // Delete specific data
+  const deleteData = (id) => {
+    fetch(`${jsonUrl}/${id}`, {
+      method: 'DELETE',
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Gagal menghapus data: ${response.status}`);
+        }
+        // Tidak memanggil .json() karena respons DELETE mungkin kosong
+        alert('Data berhasil dihapus');
+        refreshPage();
+      })
+      .catch((error) => {
+        console.error('DELETE Error:', error.message);
+        alert(`Error: ${error.message}`);
+      });
+  };
 
-    const submit = () => {
-        const data = {
-            first_name: first_name,
-            last_name: last_name,
-            email: email,
-            kelas: kelas,
-            gender: gender,
-        };
-
-        fetch('http://192.168.1.4:3000/mahasiswa/${selectedUser?.id}', {
-            method: 'PATCH',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
-            .then((response) => response.json())
-            .then((json) => {
-                console.log('Response:', json);
-                alert('Data berhasil diperbarui');
-                setFirstName('');
-                setLastName('');
-                setKelas('');
-                setGender('');
-                setEmail('');
-                refreshPage();
-            })
-            .catch((error) => console.error(error));
-    };
-
-    return (
-        <SafeAreaView style={styles.container}>
-            <View>
-                {isLoading ? (
-                    <View style={styles.loadingContainer}>
-                        <Text style={styles.cardtitle}>Loading...</Text>
-                    </View>
-                ) : (
-                    <View>
-                        <ScrollView style={styles.form}>
-                            <View>
-                                <Text style={styles.title}>Edit Data Mahasiswa</Text>
-                                <View style={styles.form}>
-                                    <TextInput
-                                        style={styles.input}
-                                        placeholder="Nama Depan"
-                                        value={first_name}
-                                        onChangeText={(value) => setFirstName(value)}
-                                    />
-                                    <TextInput
-                                        style={styles.input}
-                                        placeholder="Nama Belakang"
-                                        value={last_name}
-                                        onChangeText={(value) => setLastName(value)}
-                                    />
-                                    <TextInput
-                                        style={styles.input}
-                                        placeholder="Kelas"
-                                        value={kelas}
-                                        onChangeText={(value) => setKelas(value)}
-                                    />
-                                    <TextInput
-                                        style={styles.input}
-                                        placeholder="Jenis Kelamin"
-                                        value={gender}
-                                        onChangeText={(value) => setGender(value)}
-                                    />
-                                    <TextInput
-                                        style={styles.input}
-                                        placeholder="Email"
-                                        value={email}
-                                        onChangeText={(value) => setEmail(value)}
-                                    />
-                                    <Button title="Edit" style={styles.button} onPress={submit} />
-                                </View>
-                            </View>
-                            <View style={styles.devider}></View>
-
-                            <FlatList
-                                style={{ marginBottom: 10 }}
-                                data={dataUser}
-                                onRefresh={refreshPage}
-                                refreshing={refresh}
-                                keyExtractor={(item) => item.id.toString()}
-                                renderItem={({ item }) => (
-                                    <TouchableOpacity onPress={() => selectItem(item)}>
-                                        <View style={styles.card}>
-                                            <View style={styles.avatar}>
-                                                <FontAwesomeIcon icon={faGraduationCap} size={50} />
-                                            </View>
-                                            <View>
-                                                <Text style={styles.cardtitle}>
-                                                    {item.first_name} {item.last_name}
-                                                </Text>
-                                                <Text>{item.kelas}</Text>
-                                                <Text>{item.gender}</Text>
-                                            </View>
-                                            <View style={styles.editIcon}>
-                                                <FontAwesomeIcon icon={faPenToSquare} size={20} />
-                                            </View>
-                                        </View>
-                                    </TouchableOpacity>
-                                )}
-                            />
-                        </ScrollView>
-                    </View>
-                )}
-            </View>
-        </SafeAreaView>
-    );
+  return (
+    <SafeAreaView style={styles.container}>
+      {isLoading ? (
+        <View style={styles.loadingContainer}>
+          <Text style={styles.cardTitle}>Loading...</Text>
+        </View>
+      ) : (
+        <FlatList
+          style={styles.flatList}
+          data={dataUser}
+          onRefresh={refreshPage}
+          refreshing={refresh}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => (
+            <TouchableOpacity>
+              <View style={styles.card}>
+                {/* Avatar Icon */}
+                <View style={styles.avatar}>
+                  <FontAwesomeIcon
+                    icon={faGraduationCap}
+                    size={50}
+                    color={item.color || '#000'}
+                  />
+                </View>
+                {/* User Info */}
+                <View style={styles.cardContent}>
+                  <Text style={styles.cardTitle}>
+                    {item.first_name} {item.last_name}
+                  </Text>
+                  <Text>{item.kelas}</Text>
+                  <Text>{item.gender}</Text>
+                </View>
+                {/* Chevron Icon */}
+                <View style={styles.chevron}>
+                  <FontAwesomeIcon icon={faChevronRight} size={20} />
+                </View>
+              </View>
+              {/* Delete Button */}
+              <View style={styles.form}>
+                <Button
+                  title="Hapus"
+                  onPress={() =>
+                    Alert.alert(
+                      'Hapus Data',
+                      'Yakin ingin menghapus data ini?',
+                      [
+                        { text: 'Tidak', onPress: () => console.log('Batal') },
+                        { text: 'Ya', onPress: () => deleteData(item.id) },
+                      ]
+                    )
+                  }
+                  color="red"
+                />
+              </View>
+            </TouchableOpacity>
+          )}
+        />
+      )}
+    </SafeAreaView>
+  );
 };
 
-export default Createdata;
-
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#f5f5f5',
-    },
-    title: {
-        paddingVertical: 12,
-        backgroundColor: '#333',
-        color: 'white',
-        fontSize: 20,
-        fontWeight: 'bold',
-        textAlign: 'center',
-    },
-    form: {
-        padding: 10,
-        marginBottom: 10,
-    },
-    input: {
-        borderWidth: 1,
-        borderColor: '#777',
-        borderRadius: 8,
-        padding: 8,
-        width: '100%',
-        marginVertical: 5,
-    },
-    button: {
-        marginVertical: 10,
-    },
-    card: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        padding: 10,
-        marginVertical: 5,
-        backgroundColor: '#fff',
-        borderRadius: 8,
-        borderWidth: 1,
-        borderColor: '#ddd',
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.2,
-        shadowRadius: 4,
-        elevation: 3,
-    },
-    avatar: {
-        marginRight: 10,
-    },
-    cardtitle: {
-        fontWeight: 'bold',
-        fontSize: 16,
-    },
-    editIcon: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'flex-end',
-    },
-    loadingContainer: {
-        alignItems: 'center',
-        marginTop: 20,
-    },
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  loadingContainer: {
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  flatList: {
+    marginBottom: 0,
+  },
+  card: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 15,
+    marginVertical: 5,
+    marginHorizontal: 10,
+    backgroundColor: '#f9f9f9',
+    borderRadius: 8,
+    elevation: 2,
+  },
+  avatar: {
+    marginRight: 15,
+  },
+  cardContent: {
+    flex: 1,
+  },
+  chevron: {
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+  },
+  form: {
+    padding: 10,
+  },
+  cardTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
 });
+
+export default Listdata;

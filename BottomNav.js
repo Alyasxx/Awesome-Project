@@ -1,55 +1,93 @@
 import * as React from 'react';
-import { Text, View } from 'react-native';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faChartPie, faHomeAlt, faPlusCircle} from '@fortawesome/free-solid-svg-icons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Profil from './App';
-import Mahasiswa from './Mahasiswa';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faUser } from '@fortawesome/free-regular-svg-icons';
-import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
 import { WebView } from 'react-native-webview';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import Edit from './Editwallet';
+import AnalyticsPage from './Analytics';
+import Create from './Createwallet';
+import List from './Listwallet';
+import { faMapLocation } from '@fortawesome/free-solid-svg-icons/faMapLocation';
+import { faList } from '@fortawesome/free-solid-svg-icons/faList';
 
+const Tab = createBottomTabNavigator();
 
 function HomeScreen() {
-  return (
-  <Profil/>
-  );
+  return <Edit />;
 }
 
-function DataMahasiswaScreen() {
-  return (
-    <Mahasiswa/>
-  );
+function AnalyticsScreen() {
+  return <AnalyticsPage />;
 }
 
 function WebScreen() {
-  return (
-    <WebView
-    source={{ uri: 'https://github.com/Alyasxx' }}  />
-  );
+  return <WebView source={{ uri: 'https://alyasxx.github.io/WebGIS-PGPBL/' }} />;
 }
 
-const Tab = createBottomTabNavigator();
+function ListScreen() {
+  return <List />;
+}   
+
+function CreateScreen() {
+  return <Create />;
+}
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Profile" component={HomeScreen} 
-        options={{
-          headerShown: false,
-          tabBarIcon: ({ color }) => ( 
-          <FontAwesomeIcon icon={faUser} color={color} size={20}/>)}}/>
-        <Tab.Screen name="Data Mahasiswa" component={DataMahasiswaScreen}
-        options={{
-          tabBarIcon: ({ color }) => ( 
-          <FontAwesomeIcon icon={faGraduationCap} color={color} size={20}/>)}}/>
-        <Tab.Screen name="GitHub" component={WebScreen}
-        options={{ headerShown: false,
-
-          tabBarIcon: ({ color }) => ( 
-          <FontAwesomeIcon icon={faGithub} color={color} size={20}/>)}}/>
+      <Tab.Navigator
+        screenOptions={{
+          tabBarStyle: {
+            backgroundColor: '#FF5E78', // Set background color of the tab bar to pink
+          },
+          tabBarActiveTintColor: '#fff', // Active tab icon color
+          tabBarInactiveTintColor: '#f4f4f4', // Inactive tab icon color
+          headerStyle: {
+            backgroundColor: '#FF5E78', // Set background color for headers (if visible)
+          },
+          headerTintColor: '#fff', // Header text color
+        }}
+      >
+        <Tab.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{
+            headerShown: false,
+            tabBarIcon: ({ color }) => <FontAwesomeIcon icon={faHomeAlt} color={color} size={20} />,
+          }}
+        />
+        <Tab.Screen
+          name="Analytics"
+          component={AnalyticsScreen}
+          options={{
+            tabBarIcon: ({ color }) => <FontAwesomeIcon icon={faChartPie} color={color} size={20} />,
+          }}
+        />
+        <Tab.Screen
+          name="ATM's Loc"
+          component={WebScreen}
+          options={{
+            headerShown: false,
+            tabBarIcon: ({ color }) => <FontAwesomeIcon icon={faMapLocation} color={color} size={20} />,
+          }}
+        />
+        <Tab.Screen
+          name="List"
+          component={ListScreen}
+          options={{
+            headerShown: false,
+            tabBarIcon: ({ color }) => <FontAwesomeIcon icon={faList} color={color} size={20} />,
+          }}
+        />
+        <Tab.Screen
+          name="Create"
+          component={CreateScreen}
+          options={{
+            headerShown: false,
+            tabBarIcon: ({ color }) => <FontAwesomeIcon icon={faPlusCircle} color={color} size={20} />,
+          }}
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );
