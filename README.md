@@ -18,19 +18,23 @@ Aplikasi **CashLess** dibuat dengan tujuan untuk:
 ## Pembahasan Produk
 
 ### 1. **Halaman Home (Edit Wallet)**
-<img src="data/home.png" alt="Home CashLess" width="100" height="100" />
+<img src="data/home.png" alt="Home CashLess" />
 Halaman ini berfungsi sebagai tempat bagi pengguna untuk memasukkan dan mengedit data keuangan mereka. Pengguna dapat menambahkan kategori pengeluaran atau pemasukan seperti Gaji, Bonus, Makan, Transportasi, dan lainnya. Setiap transaksi dapat dicatat dengan memasukkan nominal dan jenisnya (income atau expenses). Halaman ini memungkinkan pengguna untuk memperbarui data keuangan mereka dengan mudah dan efisien.
 
 ### 2. **Halaman Analytics (Analisis Keuangan)**
+<img src="data/pie.png" alt="Home CashLess" />
 Halaman ini menampilkan visualisasi dari data keuangan pengguna dalam bentuk grafik pie chart yang interaktif. Pengguna dapat melihat alokasi pengeluaran dan pendapatan mereka dalam bentuk diagram yang mudah dipahami. Setiap kategori di pie chart dapat diklik untuk menampilkan detail lebih lanjut mengenai nominal yang telah dibelanjakan atau diterima di setiap kategori. Dengan fitur ini, pengguna dapat memonitor kesehatan keuangan mereka secara lebih mendalam.
 
 ### 3. **Halaman ATM's Loc (Lokasi ATM)**
+<img src="data/map.png" alt="Home CashLess" />
 Di halaman ini, pengguna dapat mengakses peta yang menampilkan lokasi ATM terdekat. Ini sangat berguna bagi pengguna yang ingin menarik uang tunai dari ATM atau mencari lokasi ATM yang sesuai dengan bank mereka. Aplikasi ini menggunakan WebView untuk mengakses peta yang interaktif dan dapat dengan mudah memperlihatkan lokasi ATM terdekat.
 
 ### 4. **Halaman List (Daftar Transaksi)**
+<img src="data/list.png" alt="Home CashLess" />
 Halaman List menyajikan riwayat transaksi pengguna dalam urutan kronologis. Pengguna dapat melihat detail setiap transaksi, termasuk kategori, nominal, dan tanggal transaksi. Ini memberi gambaran yang jelas tentang pengeluaran dan pendapatan yang terjadi selama periode tertentu, membantu pengguna untuk tetap mengetahui kondisi keuangan mereka.
 
 ### 5. **Halaman Create (Buat Transaksi)**
+<img src="data/add.png" alt="Home CashLess" />
 Halaman Create memungkinkan pengguna untuk menambah transaksi baru secara langsung. Pengguna dapat memilih kategori, menentukan jenis transaksi (income atau expenses), dan memasukkan jumlah uang yang relevan. Fitur ini memberi kebebasan kepada pengguna untuk memperbarui catatan keuangan mereka dengan cepat dan mudah, memberikan kontrol lebih besar atas manajemen keuangan.
 
 ## Fitur Utama
@@ -40,8 +44,10 @@ Halaman Create memungkinkan pengguna untuk menambah transaksi baru secara langsu
 - **Lokasi ATM**: Menyediakan peta lokasi ATM terdekat.
 - **Pengingat Keuangan**: Fitur pengingat untuk mencatat transaksi secara rutin.
 
-## Instalasi
+## Komponen Yang Digunakan
+1. React Native
+2. Leaflet JS
 
-1. Clone repositori ini:
-   ```bash
-   git clone https://github.com/username/CashLess.git
+## Sumber Data
+1. Google Maps
+2. Survei
