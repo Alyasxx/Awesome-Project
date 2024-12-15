@@ -1,5 +1,8 @@
 # CashLess - Aplikasi E-Wallet untuk Pendataan Keuangan
 
+![Logo CashLess](data/cashless.png)
+==========================
+
 ## Latar Belakang
 Di era digital yang semakin maju, pengelolaan keuangan pribadi menjadi semakin penting. Dengan semakin banyaknya transaksi yang dilakukan secara digital, masyarakat membutuhkan alat yang dapat membantu memantau dan mengatur keuangan mereka dengan mudah dan efisien. Banyak aplikasi keuangan yang tersedia, tetapi banyak di antaranya yang memiliki antarmuka yang kompleks dan sulit digunakan oleh orang-orang yang tidak terbiasa dengan teknologi.
 
