@@ -47,6 +47,7 @@ Halaman Create memungkinkan pengguna untuk menambah transaksi baru secara langsu
 ## Komponen Yang Digunakan
 1. React Native
 2. Leaflet JS
+3. Thunder Client
 
 ## Sumber Data
 1. Google Maps
